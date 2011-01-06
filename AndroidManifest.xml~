@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest 
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   package="com.threeDBJ.MolecularMassCalc"
+   android:versionCode="1"
+   android:versionName="1.0">
+  <uses-sdk 
+     android:minSdkVersion="3" 
+     android:targetSdkVersion="9" />
+  <application android:label="Molecular Mass Calculator" android:icon="@drawable/icon">
+    <activity 
+       android:name="MolecularMassCalc"
+       android:label="Molecular Mass Calculator">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:name="com.admob.android.ads.AdMobActivity"
+	      android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+	      android:configChanges="orientation|keyboard|keyboardHidden" />
+    <meta-data android:value="a14d20d82b41ae6" android:name="ADMOB_PUBLISHER_ID" />
+    
+    <receiver android:name="com.admob.android.ads.analytics.InstallReceiver"
+	      android:exported="true">
+      <intent-filter>
+	<action android:name="com.android.vending.INSTALL_REFERRER" />
+      </intent-filter>
+    </receiver>
+    
+  </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+</manifest> 
