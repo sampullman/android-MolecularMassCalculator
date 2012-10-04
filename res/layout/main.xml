@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:layout_weight="0.5">
+    <LinearLayout
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1.05">
+      <TextView
+	  android:id="@+id/title"
+	  android:textSize="26sp"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:layout_gravity="center"
+	  android:layout_weight="1"
+	  android:text="Molecular Mass Calculator" />
+    </LinearLayout>
+    <LinearLayout
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1.1">
+      <TextView
+	  android:id="@+id/help1"
+	  android:textSize="18sp"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:layout_gravity="center"
+	  android:layout_weight="1"
+	  android:text="  -A number must follow each element" />
+    </LinearLayout>
+    <LinearLayout
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1.1">
+      <TextView
+	  android:id="@+id/help2"
+	  android:textSize="18sp"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:layout_gravity="center"
+	  android:layout_weight="1"
+	  android:text="  -eg. h2o1 or na1cl1" />
+    </LinearLayout>
+    <LinearLayout
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1">
+      <EditText
+	  android:id="@+id/input"
+	  android:textSize="25sp"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:singleLine="true"
+	  android:paddingLeft="10dp"
+	  android:background="@drawable/input"
+	  android:layout_weight="0.24"
+	  android:text="" />
+      <Button
+	  android:id="@+id/clear"
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent"
+	  android:layout_weight="1"
+	  android:textSize="14sp"
+	  android:text="Clear" />
+    </LinearLayout>
+    <LinearLayout
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1">
+      <TextView
+	  android:id="@+id/spc1"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:layout_gravity="center_vertical|center_horizontal"
+	  android:layout_weight="1"
+	  android:text="" />
+      <Button
+	  android:id="@+id/calc"
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent"
+	  android:layout_weight="1"
+	  android:textSize="16sp"
+	  android:text="Calculate" />
+      <TextView
+	  android:id="@+id/spc2"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:layout_gravity="center_vertical|center_horizontal"
+	  android:layout_weight="1"
+	  android:text="" />
+    </LinearLayout>
+    <LinearLayout
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1">
+      <TextView
+	  android:id="@+id/resText1"
+	  android:textSize="24sp"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:gravity="center"
+	  android:layout_weight="1.6"
+	  android:text="Result:" />
+      <TextView
+	  android:id="@+id/result"
+	  android:textSize="28sp"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:layout_gravity="center"
+	  android:gravity="center_vertical"
+	  android:paddingLeft="10dp"
+	  android:layout_weight="1"
+	  android:background="@drawable/resholder"
+	  android:text="" />
+      <TextView
+	  android:id="@+id/resText2"
+	  android:textSize="20sp"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:gravity="center"
+	  android:layout_weight="1.7"
+	  android:text="g/mol" />
+    </LinearLayout>
+    <LinearLayout
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1">
+      <TextView
+	  android:id="@+id/spc3"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:layout_gravity="center"
+	  android:layout_weight="1.1"
+	  android:text="" />
+      <Button
+	  android:id="@+id/percent"
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent"
+	  android:layout_weight="1"
+	  android:textSize="18sp"
+	  android:text="Mass %" />
+      <TextView
+	  android:id="@+id/spc4"
+	  android:layout_height="fill_parent"
+	  android:layout_width="fill_parent"
+	  android:layout_gravity="center"
+	  android:layout_weight="1.1"
+	  android:text="" />
+    </LinearLayout>
+  </LinearLayout>
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:layout_weight="0.8">
+    <TextView
+	android:id="@+id/form_text"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:gravity="center"
+	android:layout_weight="0.8"
+	android:textSize="18sp"
+	android:text="Formula name:" />
+    <TextView
+	android:id="@+id/form_name"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:layout_gravity="center"
+	android:gravity="center_vertical|left"
+	android:paddingLeft="5dp"
+	android:layout_weight="0.7"
+	android:textSize="18sp"
+	android:text="" />
+  </LinearLayout>
+  <include layout="@layout/ad_space"/>
+</LinearLayout>
+
