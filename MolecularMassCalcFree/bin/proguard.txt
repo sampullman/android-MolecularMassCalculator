@@ -1,0 +1,9 @@
+# view AndroidManifest.xml #generated:13
+-keep class com.google.ads.AdActivity { <init>(...); }
+
+# view res/layout/ad_space.xml #generated:2
+-keep class com.google.ads.AdView { <init>(...); }
+
+# view AndroidManifest.xml #generated:7
+-keep class com.threeDBJ.MolecularMassCalcLib.MolecularMassCalc { <init>(...); }
+

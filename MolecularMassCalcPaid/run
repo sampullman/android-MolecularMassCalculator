@@ -1,0 +1,3 @@
+ant clean
+ant debug
+adb install -r bin/MolecularMassCalc-debug.apk

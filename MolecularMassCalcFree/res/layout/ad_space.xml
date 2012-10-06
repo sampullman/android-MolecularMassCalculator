@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.ads.AdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/ad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    ads:adUnitId="a14d20d82b41ae6"
+    ads:adSize="BANNER"
+    ads:loadAdOnCreate="true"
+    ads:backgroundColor="#000000"
+    ads:primaryTextColor="#FFFFFF"
+    ads:secondaryTextColor="#CCCCCC"
+    ads:keywords="Android molecular mass calculator"/>
