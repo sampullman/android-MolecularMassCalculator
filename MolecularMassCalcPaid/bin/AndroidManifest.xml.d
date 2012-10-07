@@ -1,3 +1,3 @@
-/home/sam/Desktop/git/android/MolecularMassCalcPaid/bin/AndroidManifest.xml : \
-/home/sam/Desktop/git/android/MolecularMassCalcPaid/AndroidManifest.xml \
-/home/sam/Desktop/git/android/MolecularMassCalcLib/AndroidManifest.xml \
+/home/sam/Desktop/git/android/MolecularMassCalc/MolecularMassCalcPaid/bin/AndroidManifest.xml : \
+/home/sam/Desktop/git/android/MolecularMassCalc/MolecularMassCalcPaid/AndroidManifest.xml \
+/home/sam/Desktop/git/android/MolecularMassCalc/MolecularMassCalcLib/AndroidManifest.xml \

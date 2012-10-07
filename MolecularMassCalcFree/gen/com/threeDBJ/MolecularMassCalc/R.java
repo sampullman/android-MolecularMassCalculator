@@ -11,38 +11,53 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int btn_light=0x7f020000;
-        public static final int btn_light_normal=0x7f020001;
-        public static final int btn_light_pressed=0x7f020002;
-        public static final int icon=0x7f020003;
-        public static final int input=0x7f020004;
-        public static final int mmc_input=0x7f020005;
-        public static final int mmc_result=0x7f020006;
-        public static final int resholder=0x7f020007;
-        public static final int results=0x7f020008;
+        public static final int btn_dark=0x7f020000;
+        public static final int btn_dark_normal=0x7f020001;
+        public static final int btn_dark_pressed=0x7f020002;
+        public static final int btn_light=0x7f020003;
+        public static final int btn_light_normal=0x7f020004;
+        public static final int btn_light_pressed=0x7f020005;
+        public static final int clear_img=0x7f020006;
+        public static final int edit_minimal=0x7f020007;
+        public static final int ic_menu_emoticons=0x7f020008;
+        public static final int icon=0x7f020009;
+        public static final int icon2=0x7f02000a;
+        public static final int input=0x7f02000b;
+        public static final int layout_btm_shadow=0x7f02000c;
+        public static final int layout_dark=0x7f02000d;
+        public static final int mmc_input=0x7f02000e;
+        public static final int mmc_result=0x7f02000f;
+        public static final int resholder=0x7f020010;
+        public static final int results=0x7f020011;
     }
     public static final class id {
-        public static final int ad=0x7f050000;
-        public static final int calc=0x7f050006;
-        public static final int clear=0x7f050003;
-        public static final int form_name=0x7f05000d;
-        public static final int form_text=0x7f05000c;
-        public static final int input=0x7f050002;
-        public static final int percent=0x7f050005;
-        public static final int resText1=0x7f050009;
-        public static final int resText2=0x7f05000b;
-        public static final int result=0x7f05000a;
-        public static final int result_holder=0x7f050008;
-        public static final int spc1=0x7f050004;
-        public static final int spc2=0x7f050007;
-        public static final int title=0x7f050001;
+        public static final int ad=0x7f060000;
+        public static final int calc=0x7f060003;
+        public static final int clear=0x7f060001;
+        public static final int form_name=0x7f060009;
+        public static final int form_text=0x7f060008;
+        public static final int input=0x7f060002;
+        public static final int mass_text=0x7f060005;
+        public static final int percent_text=0x7f06000a;
+        public static final int percentages=0x7f06000b;
+        public static final int purchase=0x7f06000c;
+        public static final int result=0x7f060006;
+        public static final int result_holder=0x7f060004;
+        public static final int units_text=0x7f060007;
     }
     public static final class layout {
         public static final int ad_space=0x7f030000;
         public static final int main=0x7f030001;
         public static final int main_wide=0x7f030002;
+        public static final int percentage=0x7f030003;
+        public static final int purchase=0x7f030004;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
+    }
+    public static final class style {
+        public static final int Divider=0x7f050001;
+        public static final int ResultLabel=0x7f050000;
+        public static final int ResultText=0x7f050002;
     }
 }

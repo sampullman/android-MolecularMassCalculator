@@ -2,152 +2,153 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-  <TextView
-      android:id="@+id/title"
-      android:textSize="26sp"
-      android:layout_height="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1.0" >
+  <RelativeLayout
+      android:layout_height="0dp"
       android:layout_width="match_parent"
-      android:gravity="center"
-      android:text="Enter a Molecular Formula" />
-  <LinearLayout
-      android:orientation="horizontal"
-      android:layout_width="match_parent"
-      android:layout_height="65dp"
-      android:weightSum="1.0">
-    <EditText
-	android:id="@+id/input"
-	android:textSize="25sp"
+      android:background="@drawable/layout_dark"
+      android:padding="0dp"
+      android:layout_margin="0dp"
+      android:layout_weight="0.08">
+    <ImageView
 	android:layout_height="match_parent"
-	android:layout_width="0dp"
-	android:singleLine="true"
+	android:layout_width="60dp"
 	android:paddingLeft="10dp"
-	android:layout_margin="5dp"
-	android:imeOptions="actionDone"
-	android:background="@drawable/input"
-	android:layout_weight="0.75"
-	android:text="" />
+	android:layout_alignParentLeft="true"
+	android:gravity="center"
+	android:padding="5dp"
+	android:src="@drawable/icon2" />
+    <include layout="@layout/purchase" />
     <Button
 	android:id="@+id/clear"
-	android:layout_width="0dp"
 	android:layout_height="match_parent"
-	android:layout_weight="0.25"
-	android:textSize="17sp"
-	android:background="@drawable/btn_light"
-	android:text="Clear" />
-  </LinearLayout>
-  <LinearLayout
+	android:layout_width="wrap_content"
+	android:drawableLeft="@drawable/clear_img"
+	android:textColor="?android:attr/textColorPrimary"
+	android:layout_alignParentRight="true"
+	android:layout_alignParentTop="true"
+	android:layout_alignParentBottom="true"
+	android:layout_marginTop="4dp"
+	android:layout_marginBottom="4dp"
+	android:layout_marginRight="8dp"
+	android:paddingLeft="5dp"
+	android:paddingRight="5dp"
+	android:background="@drawable/btn_dark"
+	android:textSize="14sp"
+	android:text="CLEAR" />
+  </RelativeLayout>
+  <RelativeLayout
       android:orientation="horizontal"
       android:layout_width="match_parent"
-      android:layout_height="60dp"
-      android:weightSum="1" >
-    <TextView
-	android:id="@+id/spc1"
-	android:layout_height="match_parent"
-	android:layout_width="0dp"
-	android:layout_gravity="center_vertical|center_horizontal"
-	android:layout_weight="0.15"
+      android:layout_height="0dp"
+      android:layout_weight="0.18"
+      android:padding="0dp"
+      android:layout_margin="0dp"
+      android:background="@drawable/layout_btm_shadow" >
+    <EditText
+	android:id="@+id/input"
+	android:textSize="22sp"
+	android:layout_height="50dp"
+	android:layout_width="match_parent"
+	android:singleLine="true"
+	android:paddingLeft="15dp"
+	android:paddingBottom="0dp"
+	android:layout_marginLeft="12dp"
+	android:layout_marginRight="12dp"
+	android:imeOptions="actionDone"
+	android:inputType="textFilter"
+	android:layout_alignParentTop="true"
+	android:background="@drawable/edit_minimal"
+	android:hint="Enter formula here"
 	android:text="" />
-    <Button
-	android:id="@+id/percent"
-	android:layout_width="0dp"
-	android:layout_height="match_parent"
-	android:layout_weight="0.3"
-	android:textSize="17sp"
-	android:background="@drawable/btn_light"
-	android:text="Mass %"
-	android:visibility="invisible" />
     <Button
 	android:id="@+id/calc"
-	android:layout_width="0dp"
-	android:layout_height="match_parent"
-	android:layout_weight="0.3"
-	android:background="@drawable/btn_light"
-	android:textSize="17sp"
-	android:text="Calculate" />
-    <TextView
-	android:id="@+id/spc2"
-	android:layout_height="match_parent"
-	android:layout_width="0dp"
-	android:layout_gravity="center_vertical|center_horizontal"
-	android:layout_weight="0.25"
-	android:text="" />
-  </LinearLayout>
+	android:layout_width="wrap_content"
+	android:layout_height="50dp"
+	android:layout_centerHorizontal="true"
+	android:layout_centerVertical="true"
+	android:background="@drawable/btn_dark"
+	android:layout_below="@id/input"
+	android:paddingLeft="10dp"
+	android:paddingRight="10dp"
+	android:layout_marginTop="6dp"
+	android:layout_marginBottom="6dp"
+	android:textColor="?android:attr/textColorPrimaryInverse"
+	android:textSize="19sp"
+	android:text="CALCULATE" />
+  </RelativeLayout>
   <LinearLayout
       android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="wrap_content" >
     <include layout="@layout/ad_space"/>
   </LinearLayout>
-  <LinearLayout
-      android:id="@+id/result_holder"
-      android:orientation="vertical"
+  <ScrollView
+      android:orientation="horizontal"
       android:layout_width="match_parent"
-      android:layout_height="140dp"
-      android:visibility="gone"
-      android:paddingTop="15dp"
-      android:paddingLeft="10dp"
-      android:background="@drawable/results"
-      android:weightSum="1.0">
+      android:layout_height="0dp"
+      android:layout_weight="0.74"
+      android:padding="17dp"
+      android:background="#DDDDDDDD"
+      android:weightSum="1" >
     <LinearLayout
-	android:orientation="horizontal"
+	android:id="@+id/result_holder"
+	android:orientation="vertical"
 	android:layout_width="match_parent"
-	android:layout_height="0dp"
-	android:layout_weight="0.4"
-	android:weightSum="1" >
+	android:layout_height="wrap_content"
+	android:visibility="invisible"
+	android:padding="0dp"
+	android:background="@drawable/layout_btm_shadow">
       <TextView
-	  android:id="@+id/resText1"
-	  android:textSize="24sp"
-	  android:layout_height="match_parent"
-	  android:layout_width="0dp"
-	  android:gravity="center_vertical|right"
-	  android:layout_weight="0.25"
-	  android:text="Mass:" />
-      <TextView
-	  android:id="@+id/result"
-	  android:textSize="28sp"
-	  android:layout_height="match_parent"
-	  android:layout_width="0dp"
-	  android:layout_gravity="center"
-	  android:gravity="center"
-	  android:paddingLeft="10dp"
-	  android:layout_weight="0.5"
-	  android:text="" />
-      <TextView
-	  android:id="@+id/resText2"
-	  android:textSize="20sp"
-	  android:layout_height="match_parent"
-	  android:layout_width="0dp"
-	  android:gravity="center_vertical|left"
-	  android:layout_weight="0.25"
-	  android:text="g/mol" />
-    </LinearLayout>
-    <LinearLayout
-	android:orientation="horizontal"
-	android:layout_width="match_parent"
-	android:layout_height="0dp"
-	android:layout_weight="0.6"
-	android:weightSum="1.0" >
+	  android:id="@+id/mass_text"
+	  style="@style/ResultLabel"
+	  android:text="MASS" />
+      <View
+	  style="@style/Divider" />
+      <RelativeLayout
+	  android:layout_height="wrap_content"
+	  android:layout_width="match_parent"
+	  android:padding="0dp">
+	<TextView
+	    android:id="@+id/result"
+	    style="@style/ResultText"
+	    android:layout_width="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:text="100" />
+	<TextView
+	    android:id="@+id/units_text"
+	    style="@style/ResultText"
+	    android:layout_width="wrap_content"
+	    android:layout_toRightOf="@id/result"
+	    android:text="g/mol" />
+      </RelativeLayout>
       <TextView
 	  android:id="@+id/form_text"
-	  android:layout_height="match_parent"
-	  android:layout_width="0dp"
-	  android:gravity="center"
-	  android:layout_weight="0.45"
-	  android:textSize="18sp"
-	  android:text="Formula name:" />
+	  style="@style/ResultLabel"
+	  android:text="FORMULA NAME" />
+      <View
+	  style="@style/Divider" />
       <TextView
 	  android:id="@+id/form_name"
-	  android:layout_height="match_parent"
-	  android:layout_width="0dp"
-	  android:layout_gravity="center"
-	  android:gravity="center_vertical|left"
-	  android:paddingLeft="5dp"
-	  android:layout_weight="0.55"
-	  android:textSize="18sp"
-	  android:text="" />
+	  style="@style/ResultText"
+	  android:textSize="25sp"
+	  android:text="Unknown" />
+      <TextView
+	  android:id="@+id/percent_text"
+	  style="@style/ResultLabel"
+	  android:text="PERCENTAGE MASS" />
+      <View
+	  style="@style/Divider" />
+      <LinearLayout
+	  android:id="@+id/percentages"
+	  android:layout_height="wrap_content"
+	  android:layout_width="match_parent"
+	  android:paddingBottom="15dp"
+	  android:orientation="vertical">
+      </LinearLayout>
     </LinearLayout>
-  </LinearLayout>
+  </ScrollView>
 </LinearLayout>
 

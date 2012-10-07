@@ -29,7 +29,7 @@ public class Formula {
 	nMasses = f.nMasses;
     }
 
-    public boolean addSym(String sym)  {
+    public boolean addSym(String sym) {
 	lastInd = indexOf(symbols, sym);
 	symbs.add(sym);
 	inds.add(lastInd);
@@ -94,7 +94,7 @@ public class Formula {
     public String formatMassPercent(String sym, double val) {
 	DecimalFormat twoDForm = new DecimalFormat("#.####");
 	String ret = sym;
-	ret += " = ";
+	ret += "  ";
 	double per = val / mass;
 	per *= 100.0;
 	per = Double.valueOf(twoDForm.format(per));

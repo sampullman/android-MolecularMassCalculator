@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="5" android:versionName="1.4" package="com.threeDBJ.MolecularMassCalcPaid">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="6" android:versionName="1.5" package="com.threeDBJ.MolecularMassCalcPaid">
   <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="13"/>
   <uses-permission android:name="android.permission.INTERNET"/>
   <application android:icon="@drawable/icon" android:label="@string/app_name">

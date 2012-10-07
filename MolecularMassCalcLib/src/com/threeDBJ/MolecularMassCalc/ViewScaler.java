@@ -3,7 +3,7 @@ package com.threeDBJ.MolecularMassCalcLib;
 import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.Transformation;
-import android.widget.LinearLayout.LayoutParams;
+import android.widget.FrameLayout.LayoutParams;
 
 import android.util.Log;
 

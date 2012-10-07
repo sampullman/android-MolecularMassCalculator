@@ -29,13 +29,17 @@ public class FormulaParser {
 
     public int parse() {
 	try {
+	    for(int i=0;i<input.length();i+=1) {
+		char c = input.charAt(i);
+		if(!(Character.isLetter(c) || Character.isDigit(c))) {
+		    this.error = "Invalid input: '"+c+"'";
+		    return 0;
+		}
+	    }
 	    parse(this.input, new Formula(), NONE);
 	    return formulas.size();
-	} catch(InvalidElementException e) {
-	    this.error = e.getMessage();
 	} catch(Exception e) {
-	    this.error = e.getMessage();
-	    //this.error = "Formula not recognized.";
+	    this.error = "Formula not recognized.";
 	}
 	return 0;
     }
@@ -48,37 +52,26 @@ public class FormulaParser {
 	}
 	char c = peek(input);
 	if(Character.isLetter(c)) {
-	    boolean found = false;
-	    String err = "";
 	    if(mode == SYM) cur.addNum(1);
 	    Formula next = new Formula(cur);
 	    input = pop(input);
-
 	    if(cur.addSym(c+"")) {
 		parse(input, cur, SYM);
-		found = true;
 	    } else {
-		err = c+"";
+		this.error = "Unrecognized element: "+c;
 	    }
 	    if(input.length() == 0) return;
 	    char n = peek(input);
 	    if(Character.isLetter(n)) {
 		input = pop(input);
 		if(next.addSym(c+""+n)) {
-		    parse(input, next, SYM);
-		    found = true;
-		} else {
-		    err = c+""+n;
-		}
-	    }
-	    if(!found) {
-		this.error = "Unknown element: "+err;
+		    parse(input, next, SYM);		}
 	    }
 	} else if(Character.isDigit(c)) {
 	    input = consumeInt(input, cur);
 	    parse(input, cur, NUM);
 	} else {
-	    this.error = "Invalid input: "+c;
+	    this.error = "Invalid input: '"+c+"'";
 	}
     }
 

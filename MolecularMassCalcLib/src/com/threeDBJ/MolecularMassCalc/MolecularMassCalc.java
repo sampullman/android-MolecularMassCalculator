@@ -7,20 +7,26 @@ import android.widget.EditText;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.LinearLayout;
 import android.view.View;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
+import android.view.animation.Animation;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation.AnimationListener;
 import android.view.inputmethod.InputMethodManager;
+import android.view.LayoutInflater;
 import android.content.res.Configuration;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import java.text.DecimalFormat;
+import android.net.Uri;
 import android.util.Log;
 
 import java.text.DecimalFormat;
@@ -36,8 +42,9 @@ public class MolecularMassCalc extends Activity {
     FormulaParser p;
     Formula curFormula;
 
-    String inp="", res="", form="";
-    boolean resultsVisible = false;
+    String inp="", prevInp="", res="", form="";
+    boolean resultsVisible = false, showContextMenu = false;
+    public Typeface capFont, dataFont;
 
     /** Called when the activity is first created. */
     @Override
@@ -51,6 +58,8 @@ public class MolecularMassCalc extends Activity {
         } else if(config.orientation == 2) {
             setContentView(R.layout.main_wide);
         }
+	capFont = Typeface.createFromAsset(getAssets(), "Roboto-Black.ttf");
+	dataFont = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
         this.p = new FormulaParser();
 
@@ -72,58 +81,60 @@ public class MolecularMassCalc extends Activity {
 	result.setText(res);
 	formula.setText(form);
 	View resHolder = findViewById(R.id.result_holder);
-	View percent = findViewById(R.id.percent);
 	if(resultsVisible) {
 	    resHolder.setVisibility(View.VISIBLE);
-	    percent.setVisibility(View.VISIBLE);
+	    showPercentages();
 	} else {
-	    resHolder.setVisibility(View.GONE);
-	    percent.setVisibility(View.INVISIBLE);
+	    resHolder.setVisibility(View.INVISIBLE);
 	}
     }
 
     public void setupUI() {
 	this.formula = (TextView)findViewById (R.id.form_name);
+	formula.setTypeface(dataFont);
         this.input = (EditText) findViewById(R.id.input);
         input.setOnEditorActionListener(calcAction);
 	input.addTextChangedListener(inputChanged);
         this.result = (TextView) findViewById(R.id.result);
         Button n = (Button) findViewById(R.id.calc);
         n.setOnClickListener(calcBtn);
+	n.setTypeface(capFont);
         registerForContextMenu(n);
         n = (Button) findViewById(R.id.clear);
+	n.setTypeface(capFont);
         n.setOnClickListener(clearBtn);
-        n = (Button) findViewById(R.id.percent);
-        n.setOnClickListener(percentBtn);
-        registerForContextMenu(n);
+        n = (Button) findViewById(R.id.purchase);
+	n.setOnClickListener(adFreeBtn);
+	n.setTypeface(capFont);
+
+	setFont(R.id.mass_text, capFont);
+	setFont(R.id.form_text, capFont);
+	setFont(R.id.percent_text, capFont);
+	setFont(R.id.form_name, dataFont);
+	setFont(R.id.result, dataFont);
+	setFont(R.id.units_text, dataFont);
+    }
+
+    public void setFont(int resource, Typeface font) {
+	TextView t = (TextView) findViewById(resource);
+	t.setTypeface(font);
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v,ContextMenu.ContextMenuInfo menuInfo) {
 	MenuItem item;
-        if(v.getId() == R.id.percent) {
-	    menu_mode = PERCENTAGES;
-            menu.setHeaderTitle("Mass Percentages");
-            String add;
-            item = menu.add("Formula: "+curFormula.getCleanForm());
-            for(String per : curFormula.getMassPercents()) {
-                item = menu.add(per);
-            }
-        } else if(v.getId() == R.id.calc) {
-	    menu_mode = SELECT_FORMULA;
+	if(v.getId() == R.id.calc && showContextMenu) {
 	    menu.setHeaderTitle("Resolve Ambiguous Formula");
 	    for(int i=0;i<p.formulas.size();i+=1) {
 		item = menu.add(0, i, 0, p.getFormula(i).getCleanForm());
 	    }
+	    showContextMenu = false;
 	}
     }
 
     public boolean onContextItemSelected(MenuItem item) {
-	if(menu_mode == SELECT_FORMULA) {
-	    Log.e("mmc", "shiiiteee "+item.getItemId());
-	    curFormula = p.getFormula(item.getItemId());
-	    showResult();
-	}
-	menu_mode = NONE;
+	Log.e("mmc", "shiiiteee "+item.getItemId());
+	curFormula = p.getFormula(item.getItemId());
+	showResult();
         return true;
     }
 
@@ -148,11 +159,13 @@ public class MolecularMassCalc extends Activity {
 	    showResult();
 	} else {
 	    curFormula = p.getFormula();
+	    this.showContextMenu = true;
 	    openContextMenu(findViewById(R.id.calc));
 	}
     }
 
     public void showResult() {
+	if(prevInp.equals(curFormula.getCleanForm())) return;
 	double resVal = curFormula.getMass();
         DecimalFormat twoDForm = new DecimalFormat("#.####");
         resVal = Double.valueOf(twoDForm.format(resVal));
@@ -165,23 +178,44 @@ public class MolecularMassCalc extends Activity {
 	}
 	if(!resultsVisible) {
 	    View resHolder = findViewById(R.id.result_holder);
-	    resHolder.startAnimation(new ViewScaler(1.0f, 1.0f, 0.0f, 1.0f, 500, resHolder, false));
-	    AlphaAnimation fadeIn = new AlphaAnimation(0f, 1f);
-	    fadeIn.setDuration(500);
-	    fadeIn.setFillAfter(true);
-	    findViewById(R.id.percent).startAnimation(fadeIn);
+	    if(android.os.Build.VERSION.SDK_INT > 13) {
+		AlphaAnimation fadeIn = new AlphaAnimation(0f, 1f);
+		fadeIn.setDuration(500);
+		fadeIn.setFillAfter(true);
+		resHolder.startAnimation(fadeIn);
+	    } else {
+		resHolder.setVisibility(View.VISIBLE);
+	    }
 	    resultsVisible = true;
+	}
+	showPercentages();
+	prevInp = curFormula.getCleanForm();
+    }
+
+    public void showPercentages() {
+	LinearLayout per = (LinearLayout) findViewById(R.id.percentages);
+	per.removeAllViews();
+	LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	String add;
+	for(String perText : curFormula.getMassPercents()) {
+	    TextView t = (TextView)inflater.inflate(R.layout.percentage, per, false);
+	    t.setText(perText);
+	    t.setTypeface(dataFont);
+	    per.addView(t);
 	}
     }
 
     public void hideResult() {
 	if(resultsVisible) {
 	    View resHolder = findViewById(R.id.result_holder);
-	    resHolder.startAnimation(new ViewScaler(1.0f, 1.0f, 1.0f, 0.0f, 500, resHolder, true));
-	    AlphaAnimation fadeIn = new AlphaAnimation(1f, 0f);
-	    fadeIn.setDuration(500);
-	    fadeIn.setFillAfter(true);
-	    findViewById(R.id.percent).startAnimation(fadeIn);
+	    if(android.os.Build.VERSION.SDK_INT > 13) {
+		AlphaAnimation fadeOut = new AlphaAnimation(1f, 0f);
+		fadeOut.setDuration(500);
+		fadeOut.setFillAfter(true);
+		resHolder.startAnimation(fadeOut);
+	    } else {
+		resHolder.setVisibility(View.INVISIBLE);
+	    }
 	    resultsVisible = false;
 	}
     }
@@ -200,10 +234,17 @@ public class MolecularMassCalc extends Activity {
 	    }
 	};
 
-    private OnClickListener percentBtn = new OnClickListener() {
+    private OnClickListener adFreeBtn = new OnClickListener() {
 	    public void onClick(View v) {
-		if(curFormula != null && curFormula.nMasses > 0)
-		    openContextMenu(findViewById(R.id.percent));
+		final String pkgName = "com.threeDBJ.MolecularMassCalcPaid";
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		try {
+		    intent.setData(Uri.parse("market://details?id="+pkgName));
+		    startActivity(intent);
+		} catch (android.content.ActivityNotFoundException anfe) {
+		    intent.setData(Uri.parse("http://play.google.com/store/apps/details?id="+pkgName));
+		    startActivity(intent);
+		}
 	    }
 	};
 
