@@ -220,6 +220,12 @@ public class MolecularMassCalc extends Activity {
 
     private OnClickListener calcBtn = new OnClickListener() {
 	    public void onClick(View v) {
+		if(input.getText().length() > 0) {
+		    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		    if(imm != null) {
+			imm.hideSoftInputFromWindow(input.getWindowToken(), 0);
+		    }
+		}
 		calculate();
 	    }
 	};
