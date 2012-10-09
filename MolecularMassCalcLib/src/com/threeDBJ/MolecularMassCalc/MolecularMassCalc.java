@@ -132,7 +132,6 @@ public class MolecularMassCalc extends Activity {
     }
 
     public boolean onContextItemSelected(MenuItem item) {
-	Log.e("mmc", "shiiiteee "+item.getItemId());
 	curFormula = p.getFormula(item.getItemId());
 	showResult();
         return true;
@@ -165,7 +164,7 @@ public class MolecularMassCalc extends Activity {
     }
 
     public void showResult() {
-	if(prevInp.equals(curFormula.getCleanForm())) return;
+	if(resultsVisible && prevInp.equals(curFormula.getCleanForm())) return;
 	double resVal = curFormula.getMass();
         DecimalFormat twoDForm = new DecimalFormat("#.####");
         resVal = Double.valueOf(twoDForm.format(resVal));
@@ -216,8 +215,7 @@ public class MolecularMassCalc extends Activity {
 	    } else {
 		resHolder.setVisibility(View.INVISIBLE);
 	    }
-	    resultsVisible = false;
-	}
+	    resultsVisible = false;	}
     }
 
     private OnClickListener calcBtn = new OnClickListener() {
