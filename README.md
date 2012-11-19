@@ -1,13 +1,11 @@
-# SciGraph Calculator
+# Molecular Mass Calculator
 ### by Sam Pullman
 
-This is an NxNxN Rubik's Cube implementation for Android, featuring:
-* Use a slider to switch between cube sizes (set to 2x2 - 8x8 currently).
-* A second resolution timer that can be started, stopped, and reset.
-* Buttons to scramble and reset the cube.
-* Arcball implementation for cube rotation.
-* Touch to rotate cube layers, which snap to a position when the touch ends.
-* Cube and timer states are saved when the users exits the app or it is forced to the background.
+This is an Android app that computes the mass of any molecular formula. Other features include:
+* Displays mass percentages of each element in the input formula.
+* Attempts to grab the name of the formula with an HTTP query to a government database.
+* Portrait and landscape modes.
+* Prompts user to resolve ambiguous formulas with a list of all the possibilities.
 
 ## Instructions for getting this project up and running from the command line.
 
