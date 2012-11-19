@@ -215,7 +215,8 @@ public class MolecularMassCalc extends Activity {
 	    } else {
 		resHolder.setVisibility(View.INVISIBLE);
 	    }
-	    resultsVisible = false;	}
+	    resultsVisible = false;
+	}
     }
 
     private OnClickListener calcBtn = new OnClickListener() {
